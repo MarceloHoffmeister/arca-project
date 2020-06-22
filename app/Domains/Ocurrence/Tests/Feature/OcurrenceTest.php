@@ -4,16 +4,16 @@ namespace Arca\Support\Tests\Feature;
 
 use Arca\Support\Tests\TestCase;
 
-class ExampleTest extends TestCase
+class OcurrenceTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest(): void
+    public function testStatusCreationRoute(): void
     {
-        $response = $this->get('/');
+        $response = $this->post('ocurrence/incidents');
 
         $response->assertStatus(200);
     }
