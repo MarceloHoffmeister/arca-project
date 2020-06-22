@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "marcelohoffmeister/arca-project",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Project made for a job interview",
     "keywords": [
         "framework",
         "laravel"
@@ -34,12 +34,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
-        },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ]
+            "Arca\\": "app/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
