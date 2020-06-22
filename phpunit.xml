@@ -5,11 +5,11 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
+<!--        <testsuite name="Unit">-->
+<!--            <directory suffix="Test.php">./tests/Unit</directory>-->
+<!--        </testsuite>-->
         <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+            <directory suffix="Test.php">./app/Domains/Ocurrence/Tests/Feature</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -17,6 +17,9 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-html" target="public/phpunit" lowUpperBound="35" highLowerBound="70"/>
+    </logging>
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
