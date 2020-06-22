@@ -9,6 +9,7 @@ class Routes extends RouteFile
 
     protected function routes()
     {
-        $this->router->get("/", "IncidentController@index")->middleware('auth:api');
+        $this->router->get("/incidents", "IncidentController@index");
+        $this->router->post("/incidents", "IncidentController@create");
     }
 }
