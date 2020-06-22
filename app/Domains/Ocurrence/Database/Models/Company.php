@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    protected $table = 'public.company';
-    protected $primarykey = 'id_company';
+    protected $table = 'public.companies';
+    protected $primarykey = 'company_id';
 
 }
