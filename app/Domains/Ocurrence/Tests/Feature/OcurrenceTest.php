@@ -13,7 +13,24 @@ class OcurrenceTest extends TestCase
      */
     public function testStatusCreationRoute(): void
     {
-        $response = $this->post('ocurrence/incidents');
+        $params = [
+            'title' => 'Test title',
+            'description' => 'Some description here',
+            'value' => 100
+        ];
+        $response = $this->post('ocurrence/incidents', $params);
+
+        $response->assertStatus(200);
+    }
+
+    public function testCreationRoute(): void
+    {
+        $params = [
+            'title' => 'Test title',
+            'description' => 'Some description here',
+            'value' => 100
+        ];
+        $response = $this->post('ocurrence/incidents', $params);
 
         $response->assertStatus(200);
     }
