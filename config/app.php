@@ -172,8 +172,8 @@ return [
         Arca\Units\Core\Providers\AppServiceProvider::class,
         Arca\Units\Core\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        Arca\Units\Core\Providers\EventServiceProvider::class,
-        Arca\Units\Core\Providers\RouteServiceProvider::class,
+//        Arca\Units\Core\Providers\EventServiceProvider::class,
+        Arca\Units\SPA\Providers\RouteServiceProvider::class,
         Arca\Domains\Ocurrence\Providers\DomainServiceProvider::class,
 
     ],

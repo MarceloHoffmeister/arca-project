@@ -17,6 +17,11 @@ class IncidentsController
         $this->service = $service;
     }
 
+    public function home(Request $request): string
+    {
+        return 'Hello World';
+    }
+
     public function index(Request $request): string
     {
         return $this->service->index($request->all());
