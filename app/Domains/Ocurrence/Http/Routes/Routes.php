@@ -9,7 +9,8 @@ class Routes extends RouteFile
 
     protected function routes()
     {
-        $this->router->get("/incidents", "IncidentController@index");
-        $this->router->post("/incidents", "IncidentController@create");
+        $this->router->get("/incidents", "IncidentsController@index");
+        $this->router->post("/incidents", "IncidentsController@create");
+        $this->router->post("/companies", "CompaniesController@create");
     }
 }

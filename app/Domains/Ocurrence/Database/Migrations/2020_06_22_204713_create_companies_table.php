@@ -13,7 +13,7 @@ class CreateCompaniesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('companies', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('company_id')->unique();
             $table->string('name');

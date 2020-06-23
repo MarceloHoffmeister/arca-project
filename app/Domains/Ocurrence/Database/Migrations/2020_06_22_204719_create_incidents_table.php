@@ -13,7 +13,7 @@ class CreateIncidentsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('incidents', function (Blueprint $table) {
+        Schema::create('incidents', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('company_id')->unsigned();
             $table->uuid('incident_id');
