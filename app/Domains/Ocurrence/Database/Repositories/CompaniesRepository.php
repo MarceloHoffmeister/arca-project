@@ -4,6 +4,7 @@ namespace Arca\Domains\Ocurrence\Database\Repositories;
 
 use Arca\Domains\Ocurrence\Models\Company;
 use Arca\Support\Database\Repository\Repository;
+use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,18 +18,17 @@ class CompaniesRepository extends Repository
      * @param string $id
      * @return Model
      * @throws Exception
-     * @throws BindingResolutionException
      */
     public function updateOne(array $data, string $id): Model
     {
-//        $plan = $this->newQuery()
-//            ->where('id', $id)
-//            ->first();
-//        if ($plan === null) {
-//            throw PlansException::databaseError('Plano não encontrado para atualização');
-//        }
-//
-//        return $this->update($plan, $data);
+        $company = $this->newQuery()
+            ->where('company_id', $id)
+            ->first();
+        if ($company === null) {
+            throw new \RuntimeException('Company not found');
+        }
+
+        return $this->update($company, $data);
     }
 
     /**
@@ -36,22 +36,26 @@ class CompaniesRepository extends Repository
      * @return mixed
      * @throws BindingResolutionException
      */
-    public function getPlans($filter = [])
+    public function getCompanies($filter = [])
     {
-//        $query = $this->newQuery();
-//
-//        if (isset($filter['id']) && $filter['id'] !== '') {
-//            $query->where('id', $filter['id']);
-//        }
-//
-//        if (isset($filter['plan_id']) && $filter['plan_id'] !== '') {
-//            $query->where('plan_id', $filter['plan_id']);
-//        }
-//
-//        if (isset($filter['amount']) && $filter['amount'] !== '') {
-//            $query->where('amount', $filter['amount']);
-//        }
-//
-//        return $query->get();
+        $query = $this->newQuery();
+
+        if (isset($filter['id']) && $filter['id'] !== '') {
+            $query->where('id', $filter['id']);
+        }
+
+        if (isset($filter['company_id']) && $filter['company_id'] !== '') {
+            $query->where('company_id', $filter['company_id']);
+        }
+
+        if (isset($filter['email']) && $filter['email'] !== '') {
+            $query->where('email', $filter['email']);
+        }
+
+        if (isset($filter['city']) && $filter['city'] !== '') {
+            $query->where('city', $filter['city']);
+        }
+
+        return $query->get();
     }
 }

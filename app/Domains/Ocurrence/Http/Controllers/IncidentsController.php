@@ -17,9 +17,9 @@ class IncidentsController
         $this->service = $service;
     }
 
-    public function index(): string
+    public function index(Request $request): string
     {
-        return 'Hello World';
+        return $this->service->index($request->all());
     }
 
     public function create(Request $request): JsonResponse
@@ -31,6 +31,39 @@ class IncidentsController
         ]);
 
         $response = $this->service->create($request->all());
+
+        return response()->json([
+            'message' => 'Success!',
+            'incident_id' => $response->incident_id,
+            'code' => 1
+        ]);
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        $request->validate([
+            'incident_id' => 'uuid|exists:incidents|required',
+            'title' => 'string',
+            'description' => 'string',
+            'value' => 'numeric'
+        ]);
+
+        $response = $this->service->update($request->all());
+
+        return response()->json([
+            'message' => 'Success!',
+            'incident_id' => $response->incident_id,
+            'code' => 1
+        ]);
+    }
+
+    public function delete(Request $request): JsonResponse
+    {
+        $request->validate([
+            'incident_id' => 'uuid|exists:incidents',
+        ]);
+
+        $response = $this->service->delete($request->all());
 
         return response()->json([
             'message' => 'Success!',

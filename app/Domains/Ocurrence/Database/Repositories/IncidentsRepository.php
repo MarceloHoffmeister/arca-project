@@ -4,6 +4,7 @@ namespace Arca\Domains\Ocurrence\Database\Repositories;
 
 use Arca\Domains\Ocurrence\Database\Models\Incident;
 use Arca\Support\Database\Repository\Repository;
+use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,18 +18,17 @@ class IncidentsRepository extends Repository
      * @param string $id
      * @return Model
      * @throws Exception
-     * @throws BindingResolutionException
      */
     public function updateOne(array $data, string $id): Model
     {
-//        $plan = $this->newQuery()
-//            ->where('id', $id)
-//            ->first();
-//        if ($plan === null) {
-//            throw PlansException::databaseError('Plano não encontrado para atualização');
-//        }
-//
-//        return $this->update($plan, $data);
+        $incident = $this->newQuery()
+            ->where('incident_id', $id)
+            ->first();
+        if ($incident === null) {
+            throw new \RuntimeException('Incident not found');
+        }
+
+        return $this->update($incident, $data);
     }
 
     /**
@@ -36,22 +36,18 @@ class IncidentsRepository extends Repository
      * @return mixed
      * @throws BindingResolutionException
      */
-    public function getPlans($filter = [])
+    public function getIncidents($filter = [])
     {
-//        $query = $this->newQuery();
-//
-//        if (isset($filter['id']) && $filter['id'] !== '') {
-//            $query->where('id', $filter['id']);
-//        }
-//
-//        if (isset($filter['plan_id']) && $filter['plan_id'] !== '') {
-//            $query->where('plan_id', $filter['plan_id']);
-//        }
-//
-//        if (isset($filter['amount']) && $filter['amount'] !== '') {
-//            $query->where('amount', $filter['amount']);
-//        }
-//
-//        return $query->get();
+        $query = $this->newQuery();
+
+        if (isset($filter['id']) && $filter['id'] !== '') {
+            $query->where('id', $filter['id']);
+        }
+
+        if (isset($filter['incident_id']) && $filter['incident_id'] !== '') {
+            $query->where('incident_id', $filter['incident_id']);
+        }
+
+        return $query->get();
     }
 }

@@ -4,8 +4,7 @@
 namespace Arca\Domains\Ocurrence\Services;
 
 use Arca\Domains\Ocurrence\Database\Repositories\CompaniesRepository;
-use Exception;
-use Illuminate\Contracts\Container\BindingResolutionException;
+use Arca\Domains\Ocurrence\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 
 class CompaniesService
@@ -17,8 +16,26 @@ class CompaniesService
         $this->repo = $repo;
     }
 
+    public function index($data)
+    {
+        return $this->repo->getCompanies($data);
+    }
+
     public function create($data): Model
     {
         return $this->repo->create($data);
+    }
+
+    public function update($data): Model
+    {
+        $company_id = $data['company_id'];
+        return $this->repo->updateOne($data, $company_id);
+    }
+
+    public function delete($data): bool
+    {
+        $id = $data[0]->company_id;
+        $model = Company::where('company_id', '=', $id)->firstOrFail();
+        return $this->repo->delete($model);
     }
 }
