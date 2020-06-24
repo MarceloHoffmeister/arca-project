@@ -1,79 +1,94 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Descrição
+Esse projeto foi criado apenas com a intenção de demonstrar algumas capacidades e passa longe de ser um sistema completo.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+ - Linguagens utilizadas
+	 - PHP (*backend*)
+	 - Javascript (*frontend*)
+- Frameworks utilizados:
+	- Laravel (*backend*)
+	- Vue CLI (*frontend*)
+- Banco de dados utilizado:
+	- PostgreSQL
+- Patterns utilizados:
+	- Factory
+	- Service layer
+	- Repository
+	- Dependency injection
 
-## About Laravel
+A estrutura de pastas desse projeto em Laravel foi alterada para um padrão *DDD-based*, baseado em domínios. Caso o projeto escale, sua estrutura de pastas não ficaria tão desorganizada haja visto que estão separados e por domínio e função e sua classes bases abstraídas como classes *support*.
+Para desenvolvimento de todo projeto foi utilizado a técnica TDD com PHPUnit e seu *code coverage* pode ser visualizado em um dos passos do *step by step*.
+Outra técnica utilizada foi a componentização para "montar" o *layout* do *frontend*
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Porém há muito o que melhorar nesse projeto, como por exemplo:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Exclusão dos *incidents*;
+- *Logout* do sistema
+- Melhoria das respostas em tela;
+- Validação dos formulários no frontend;
+- Melhoria nas respostas das rotas;
+- Tratamento de excessões;
+- *Middlewares* com/e/ou autenticação;
+- Configurações de CORS;
+- Melhoria nos testes;
+... e tantas outras coisas que eu nem devo saber!
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Step By Step
+Para deixar o repositório pronto para uso execute os seguintes passos:
 
-## Learning Laravel
+ 1. Clone o repositório no [Github](https://github.com/MarceloHoffmeister/arca-project) ou utilizando esse [link](https://github.com/MarceloHoffmeister/arca-project.git)
+ 
+> git clone https://github.com/MarceloHoffmeister/arca-project.git
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ 2. Para que tudo funcione corretamente, necessitará de um banco de dados *PostgreSQL*. Haverá a necessidade de duas base de dados, **arca** e **testing**, uma para o *CRUD* do sistema e outra para teste, como sugere o nome. Crie-as.
+ 3. Crie uma arquivo *.env* e configure as entradas de acesso ao seu BD local. Lembrando que o banco de dados deve ser *PostgreSQL*.
+ 4. Após isso gere a chave da aplicação com o comando:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+> php artisan key:generate
+ 
+ 5. Para baixar as dependências necessárias do *Laravel framework*, invoque o instalador do *composer*. Para isso execute o comando na raíz do projeto:
+ 
+> composer install
 
-## Laravel Sponsors
+ 6. Para carregar as tabelas na base da dados, execute as *migrations*. Para tal execute o comando:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+> php artisan migrate:fresh --path=app/Domains/Ocurrence/Database/Migrations
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+**Obs.: é de suma importância que acrescente o atributo *path* ao comando do *migrate*, pois os arquivos que são buscados não se encontram em seu diretório padrão.**
 
-## Contributing
+ 7. Esse sistema utiliza uma função padrão do *PostgreSQL* para gerar *ID's* no formato *UUID*. Porém essa função não é nativa, para incluir execute os seguintes comandos, necessariamente nessa ordem:
+ 
+> CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+> ALTER TABLE public.companies ALTER COLUMN company_id SET DEFAULT uuid_generate_v4();
+> ALTER TABLE public.incidents  ALTER COLUMN incident_id SET DEFAULT uuid_generate_v4();
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+ 9. Para os arquivos de *frontend* deve-se entrar na pasta *client*, que se encontra na raíz do projeto e instalar as dependências, dessa vez pelo *NPM*. Para isso execute o comando: 
 
-## Code of Conduct
+> npm install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+9. Para gerar os *bundles* do *Vue CLI* execute o seguinte comando na mesma pasta:
 
-## Security Vulnerabilities
+> npm run build
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+ 10. Com essas configuração, teoricamente, o sistema deve estar funcionando. Para iniciar o servidor local do *Laravel*, volte à pasta raíz do projeto e execute o comando:
+ 
+> php artisan serve
 
-## License
+ 11. Caso queira visualizar o *code coverage* do projeto, deve-se editar um arquivo do *laravel/framework*. Os testes do *PHPUnit* estão configurados para montar uma base de dados idêntica à de produção, utilizando as *migrations* e na base de dados *testing*. Após o fim dos testes executa-se *rollback* em todo o banco de dados *testing* automaticamente. Para que isso ocorra edite as linhas **16** e **21** do arquivo *DatabaseMigrations*, localizado em *vendor/laravel/framework/src/Illuminate/Foundation/Testing/DatabaseMigrations.php*. As linhas se encontram assim em sua forma original:
+ 
+ >$this->artisan('migrate:fresh');
+> $this->artisan('migrate:rollback');
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Deixe-as assim:
+
+> $this->artisan('migrate:fresh --path=app/Domains/Ocurrence/Database/Migrations');
+> $this->artisan('migrate:rollback --path=app/Domains/Ocurrence/Database/Migrations');
+
+12. Agora basta executar:
+
+> ./vendor/bin/phpunit
+
+13. Para visualizar o *code coverage* gerado basta abrir em qualquer navegador o arquivo *index.html* contido em:
+
+> public/phpunit/index.html
+
+Enjoy!
