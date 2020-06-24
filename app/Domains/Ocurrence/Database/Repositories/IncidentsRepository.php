@@ -48,6 +48,10 @@ class IncidentsRepository extends Repository
             $query->where('incident_id', $filter['incident_id']);
         }
 
+        if (isset($filter['company_id']) && $filter['company_id'] !== '') {
+            $query->where('company_id', $filter['company_id']);
+        }
+
         return $query->get();
     }
 }

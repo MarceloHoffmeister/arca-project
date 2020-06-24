@@ -23,7 +23,9 @@ class CompaniesService
 
     public function create($data): Model
     {
-        return $this->repo->create($data);
+        $response =  $this->repo->create($data);
+
+        return $this->repo->findById($response->id);
     }
 
     public function update($data): Model

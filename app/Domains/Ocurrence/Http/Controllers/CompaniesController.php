@@ -31,11 +31,12 @@ class CompaniesController
             'uf' => 'string|required',
         ]);
 
-        $response = $this->service->create($request->all());;
+        $response = $this->service->create($request->all());
+        $response = $response->attributesToArray();
 
         return response()->json([
             'message' => 'Success!',
-            'company_id' => $response->company_id,
+            'company_id' => $response['company_id'],
             'code' => 1
         ]);
     }
@@ -52,10 +53,11 @@ class CompaniesController
         ]);
 
         $response = $this->service->update($request->all());
+        $response = $response->attributesToArray();
 
         return response()->json([
             'message' => 'Success!',
-            'company_id' => $response->company_id,
+            'company_id' => $response['company_id'],
             'code' => 1
         ]);
     }
@@ -69,7 +71,7 @@ class CompaniesController
 
         return response()->json([
             'message' => 'Success!',
-            'company_id' => $response->company_id,
+            'status' => $response,
             'code' => 1
         ]);
     }

@@ -7,6 +7,7 @@ namespace Arca\Domains\Ocurrence\Services;
 use Arca\Domains\Ocurrence\Database\Models\Incident;
 use Arca\Domains\Ocurrence\Database\Repositories\IncidentsRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class IncidentsService
 {
@@ -24,7 +25,9 @@ class IncidentsService
 
     public function create($data): Model
     {
-        return $this->repo->create($data);
+        $response = $this->repo->create($data);
+
+        return $this->repo->findById($response->id);
     }
 
     public function update($data): Model
